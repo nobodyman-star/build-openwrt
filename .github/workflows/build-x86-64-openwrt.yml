@@ -79,7 +79,35 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@main
-
+    - name: Free up disk space
+        run: |
+          # 1. 清理 APT 缓存和旧包（最大的空间占用之一）
+          sudo apt-get clean
+          sudo apt-get autoremove -y --purge
+          sudo rm -rf /var/lib/apt/lists/*
+          
+          # 2. 清理 Docker 镜像/容器（如果用了 Docker，这是空间大户）
+          docker system prune -a -f || true  # || true 避免无 Docker 时报错
+          sudo rm -rf /var/lib/docker/* || true
+          
+          # 3. 清理 GitHub Runner 旧日志和缓存
+          sudo rm -rf /home/runner/actions-runner/cached/_diag/*.log
+          sudo rm -rf /home/runner/actions-runner/_work/_temp/*
+          sudo rm -rf /home/runner/actions-runner/_work/_artifact/*
+          
+          # 4. 清理预装的大体积无用工具（按需删除，比如不用 Android/Unity/.NET 旧版本）
+          sudo rm -rf /usr/local/lib/android  # 约 10GB
+          sudo rm -rf /usr/share/dotnet       # 约 2GB
+          sudo rm -rf /opt/ghc                # Haskell 编译器，约 1GB
+          sudo rm -rf /opt/hostedtoolcache/CodeQL  # 不用 CodeQL 则删除
+          sudo rm -rf /opt/hostedtoolcache/node/*  # 只保留当前需要的 Node 版本
+          
+          # 5. 清理临时文件
+          sudo rm -rf /tmp/*
+          sudo rm -rf /var/tmp/*
+          
+          # 验证剩余空间
+          df -h
     - name: Check Server Performance
       run: |
         echo "警告⚠"
