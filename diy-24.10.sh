@@ -265,7 +265,8 @@ clone_dir https://github.com/sbwml/openwrt_helloworld shadowsocks-rust
 git_clone https://github.com/kiddin9/luci-theme-edge
 git_clone https://github.com/jerrykuku/luci-theme-argon
 git_clone https://github.com/jerrykuku/luci-app-argon-config
-
+git_clone https://github.com/sirpdboy/luci-app-kucat-config
+git_clone https://github.com/sirpdboy/luci-theme-kucat
 # 晶晨宝盒
 clone_all https://github.com/ophub/luci-app-amlogic
 sed -i "s|firmware_repo.*|firmware_repo 'https://github.com/$GITHUB_REPOSITORY'|g" $destination_dir/luci-app-amlogic/root/etc/config/amlogic
