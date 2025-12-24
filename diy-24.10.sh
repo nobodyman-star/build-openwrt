@@ -249,7 +249,7 @@ clone_all https://github.com/xuanranran/luci-app-onliner
 clone_all https://github.com/linkease/istore-ui
 clone_all https://github.com/linkease/istore luci
 clone_all https://github.com/chenmozhijin/luci-app-socat
-
+clone_all https://github.com/asvow/luci-app-tailscale
 clone_all https://github.com/brvphoenix/luci-app-wrtbwmon
 clone_all https://github.com/brvphoenix/wrtbwmon
 
