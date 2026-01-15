@@ -253,7 +253,7 @@ clone_all https://github.com/chenmozhijin/luci-app-socat
 # clone_all https://github.com/asvow/luci-app-tailscale
 clone_all https://github.com/brvphoenix/luci-app-wrtbwmon
 clone_all https://github.com/brvphoenix/wrtbwmon
-clone_dir https://github.com/kiddin9/kwrt-packages luci-app-onliner luci-app-tailscale-community luci-app-wizard openwrt-bandix luci-app-bandix
+clone_dir https://github.com/kiddin9/kwrt-packages luci-app-onliner luci-app-tailscale-community luci-app-wizard openwrt-bandix luci-app-bandix luci-theme-edge
 # 科学上网插件
 clone_all https://github.com/fw876/helloworld
 clone_all https://github.com/xiaorouji/openwrt-passwall-packages
@@ -263,9 +263,9 @@ clone_dir https://github.com/vernesong/OpenClash luci-app-openclash
 clone_dir https://github.com/sbwml/openwrt_helloworld shadowsocks-rust
 
 # Themes
-git_clone https://github.com/kiddin9/luci-theme-edge
-git_clone https://github.com/jerrykuku/luci-theme-argon
-git_clone https://github.com/jerrykuku/luci-app-argon-config
+# git_clone https://github.com/kiddin9/luci-theme-edge
+# git_clone https://github.com/jerrykuku/luci-theme-argon
+# git_clone https://github.com/jerrykuku/luci-app-argon-config
 git_clone https://github.com/sirpdboy/luci-app-kucat-config
 git_clone https://github.com/sirpdboy/luci-theme-kucat
 # 晶晨宝盒
@@ -366,6 +366,6 @@ echo -e "$(color cy 当前编译机型) $(color cb $SOURCE_REPO-${REPO_BRANCH#*-
 
 # 更改固件文件名
 # sed -i "s/\$(VERSION_DIST_SANITIZED)/$SOURCE_REPO-${REPO_BRANCH#*-}-$KERNEL_VERSION/" include/image.mk
-# sed -i "/IMG_PREFIX:/ {s/=/=$SOURCE_REPO-${REPO_BRANCH#*-}-$KERNEL_VERSION-\$(shell date +%y.%m.%d)-/}" include/image.mk
+sed -i "/IMG_PREFIX:/ {s/=/=$SOURCE_REPO-${REPO_BRANCH#*-}-$KERNEL_VERSION-\$(shell date +%y.%m.%d)-/}" include/image.mk
 
 color cp "脚本运行完成！"
