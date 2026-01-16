@@ -255,12 +255,12 @@ clone_all https://github.com/brvphoenix/luci-app-wrtbwmon
 clone_all https://github.com/brvphoenix/wrtbwmon
 clone_dir https://github.com/kiddin9/kwrt-packages luci-app-onliner luci-app-tailscale-community luci-app-wizard openwrt-bandix luci-app-bandix luci-theme-edge
 # 科学上网插件
-clone_all https://github.com/fw876/helloworld
-clone_all https://github.com/xiaorouji/openwrt-passwall-packages
-clone_all https://github.com/xiaorouji/openwrt-passwall
-clone_all https://github.com/xiaorouji/openwrt-passwall2
-clone_dir https://github.com/vernesong/OpenClash luci-app-openclash
-clone_dir https://github.com/sbwml/openwrt_helloworld shadowsocks-rust
+# clone_all https://github.com/fw876/helloworld
+# clone_all https://github.com/xiaorouji/openwrt-passwall-packages
+# clone_all https://github.com/xiaorouji/openwrt-passwall
+# clone_all https://github.com/xiaorouji/openwrt-passwall2
+# clone_dir https://github.com/vernesong/OpenClash luci-app-openclash
+# clone_dir https://github.com/sbwml/openwrt_helloworld shadowsocks-rust
 
 # Themes
 # git_clone https://github.com/kiddin9/luci-theme-edge
