@@ -309,6 +309,8 @@ echo "DISTRIB_DATE='R$(date +%y.%-m.%-d)'" >>package/base-files/files/etc/openwr
 # 调整 netdata 到 状态 菜单
 # sed -i 's/system/status/g' feeds/luci/applications/luci-app-netdata/luasrc/controller/netdata.lua
 sed -i 's/services/vpn/g' package/A/luci-app-tailscale-community/root/usr/share/luci/menu.d/luci-app-tailscale-community.json
+sed -i 's/services/control/g' package/A/luci-app-oaf/luasrc/controller/appfilter.lua
+sed -i 's/services/control/g' feeds/luci/applications/luci-app-nft-qos/luasrc/controller/nft-qos.lua
 
 
 # 更改 ttyd 顺序和名称
