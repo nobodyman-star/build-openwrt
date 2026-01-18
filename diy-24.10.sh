@@ -311,7 +311,7 @@ echo "DISTRIB_DATE='R$(date +%y.%-m.%-d)'" >>package/base-files/files/etc/openwr
 # sed -i 's/services/vpn/g' package/A/luci-app-tailscale-community/root/usr/share/luci/menu.d/luci-app-tailscale-community.json
 find package/A/ -type f -name "luci-app-tailscale-community.json" -exec sed -i 's/"services"/"vpn"/g' {} +
 # sed -i 's/services/control/g' package/A/luci-app-oaf/luasrc/controller/appfilter.lua
-find package/A/ -type f -path "*/luci-app-oaf/*/appfilter.lua" -exec sed -i 's/"services"/"control"/g' {} +
+find package/A/ -type f -path "*/controller/*appfilter.lua" -exec sed -i 's/"services"/"control"/g' {} +
 # sed -i 's/services/control/g' feeds/luci/applications/luci-app-nft-qos/luasrc/controller/nft-qos.lua
 find feeds/luci/ -type f -name "nft-qos.lua" -exec sed -i 's/"services"/"control"/g' {} +
 
