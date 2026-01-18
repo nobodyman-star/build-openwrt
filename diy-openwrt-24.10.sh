@@ -375,7 +375,7 @@ echo -e "$(color cy 当前编译机型) $(color cb $SOURCE_REPO-${REPO_BRANCH#*-
 
 # 更改固件文件名
 # sed -i "s/\$(VERSION_DIST_SANITIZED)/$SOURCE_REPO-${REPO_BRANCH#*-}-$KERNEL_VERSION-\$(shell date +%y.%m.%d)/" include/image.mk
-sed -i "s#\\$(VERSION_DIST_SANITIZED)#$SOURCE_REPO-${REPO_BRANCH#*-}-$KERNEL_VERSION-\$(shell date +%y.%m.%d)#" include/image.mk
+sed -i "s#\\$(VERSION_DIST_SANITIZED)#$SOURCE_REPO-Auto-${REPO_BRANCH#*-}-$KERNEL_VERSION-\$(shell date +%y.%m.%d)#" include/image.mk
 # sed -i "/IMG_PREFIX:/ {s/=/=$SOURCE_REPO-${REPO_BRANCH#*-}-$KERNEL_VERSION-\$(shell date +%y.%m.%d)-/}" include/image.mk
 
 color cp "脚本运行完成！"
