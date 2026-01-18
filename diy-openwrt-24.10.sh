@@ -285,6 +285,9 @@ if [ $PART_SIZE ]; then
     echo "CONFIG_TARGET_ROOTFS_PARTSIZE=$PART_SIZE" >>$GITHUB_WORKSPACE/$CONFIG_FILE
 fi
 
+# 修改luci为指定版本
+# sed -i 's/^src-git luci https:\/\/github.com\/coolsnowwolf\/luci.*/src-git luci https:\/\/github.com\/coolsnowwolf\/luci.git;openwrt-24.10/' feeds.conf.default
+
 # 修改默认IP
 [ $DEFAULT_IP ] && sed -i '/n) ipad/s/".*"/"'"$DEFAULT_IP"'"/' package/base-files/files/bin/config_generate
 
