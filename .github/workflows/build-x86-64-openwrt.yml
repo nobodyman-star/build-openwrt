@@ -15,7 +15,7 @@ on:
         required: true
         default: 'openwrt-24.10'
         type: choice
-        options: ['openwrt-18.06', 'openwrt-24.10', 'master']
+        options: ['openwrt-18.06', 'openwrt-24.10']
 
       target:
         description: '选择要编译的机型'
