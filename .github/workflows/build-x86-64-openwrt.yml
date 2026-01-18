@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       repo_url:
-        description: '选择要编译的分支版本'
+        description: '选择要编译的分支项目'
         required: true
         default: 'https://github.com/immortalwrt/immortalwrt'
         type: choice
