@@ -3,6 +3,13 @@ name: build x86/64 openwrt
 on:
   workflow_dispatch:
     inputs:
+      REPO_URL:
+        description: '选择要编译的分支版本'
+        required: true
+        default: 'https://github.com/immortalwrt/immortalwrt'
+        type: choice
+        options: ['https://github.com/immortalwrt/immortalwrt', 'https://github.com/coolsnowwolf/lede']
+      
       source:
         description: '选择要编译的LUCI版本'
         required: true
