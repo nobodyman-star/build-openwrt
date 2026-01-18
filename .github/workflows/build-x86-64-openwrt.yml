@@ -3,7 +3,7 @@ name: build x86/64 openwrt
 on:
   workflow_dispatch:
     inputs:
-      REPO_URL:
+      repo_url:
         description: '选择要编译的分支版本'
         required: true
         default: 'https://github.com/immortalwrt/immortalwrt'
@@ -82,6 +82,8 @@ jobs:
       TOOLCHAIN_TAG: toolchain
       UPLOAD_BIN_DIR: false
       TZ: Asia/Shanghai
+      REPO_URL: ${{ github.event.inputs.repo_url }}
+      REPO_BRANCH: openwrt-${{ github.event.inputs.source }}
 
     steps:
     - name: Checkout
