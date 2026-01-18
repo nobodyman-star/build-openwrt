@@ -308,10 +308,12 @@ echo "DISTRIB_DATE='R$(date +%y.%-m.%-d)'" >>package/base-files/files/etc/openwr
 
 # 调整 netdata 到 状态 菜单
 # sed -i 's/system/status/g' feeds/luci/applications/luci-app-netdata/luasrc/controller/netdata.lua
-sed -i 's/services/vpn/g' package/A/luci-app-tailscale-community/root/usr/share/luci/menu.d/luci-app-tailscale-community.json
-sed -i 's/services/control/g' package/A/luci-app-oaf/luasrc/controller/appfilter.lua
-sed -i 's/services/control/g' feeds/luci/applications/luci-app-nft-qos/luasrc/controller/nft-qos.lua
-
+# sed -i 's/services/vpn/g' package/A/luci-app-tailscale-community/root/usr/share/luci/menu.d/luci-app-tailscale-community.json
+find package/A/ -type f -name "luci-app-tailscale-community.json" -exec sed -i 's/"services"/"vpn"/g' {} +
+# sed -i 's/services/control/g' package/A/luci-app-oaf/luasrc/controller/appfilter.lua
+find package/A/ -type f -path "*/luci-app-oaf/*/appfilter.lua" -exec sed -i 's/"services"/"control"/g' {} +
+# sed -i 's/services/control/g' feeds/luci/applications/luci-app-nft-qos/luasrc/controller/nft-qos.lua
+find feeds/luci/ -type f -name "nft-qos.lua" -exec sed -i 's/"services"/"control"/g' {} +
 
 # 更改 ttyd 顺序和名称
 sed -i '3a \		"order": 10,' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
