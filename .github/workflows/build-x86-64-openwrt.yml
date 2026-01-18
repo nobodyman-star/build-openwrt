@@ -11,7 +11,7 @@ on:
         options: ['https://github.com/immortalwrt/immortalwrt', 'https://github.com/coolsnowwolf/lede']
       
       source:
-        description: '选择要编译的LUCI版本'
+        description: '选择要编译的LUCI版本，lede无18.06'
         required: true
         default: 'openwrt-24.10'
         type: choice
