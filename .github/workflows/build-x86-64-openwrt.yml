@@ -13,9 +13,9 @@ on:
       source:
         description: '选择要编译的LUCI版本'
         required: true
-        default: '24.10'
+        default: 'openwrt-24.10'
         type: choice
-        options: ['18.06', '24.10']
+        options: ['openwrt-18.06', 'openwrt-24.10', 'master']
 
       target:
         description: '选择要编译的机型'
@@ -83,8 +83,7 @@ jobs:
       UPLOAD_BIN_DIR: false
       TZ: Asia/Shanghai
       REPO_URL: ${{ github.event.inputs.repo_url }}
-      # REPO_BRANCH: openwrt-${{ github.event.inputs.source }}
-      REPO_BRANCH: ${{ github.event.inputs.repo_url == 'https://github.com/coolsnowwolf/lede' && 'master' || format('openwrt-{0}', github.event.inputs.source) }}
+      REPO_BRANCH: ${{ github.event.inputs.repo_url == 'https://github.com/coolsnowwolf/lede' && 'master' || github.event.inputs.source }}
     steps:
     - name: Checkout
       uses: actions/checkout@main
