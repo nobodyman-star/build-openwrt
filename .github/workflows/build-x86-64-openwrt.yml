@@ -83,8 +83,8 @@ jobs:
       UPLOAD_BIN_DIR: false
       TZ: Asia/Shanghai
       REPO_URL: ${{ github.event.inputs.repo_url }}
-      REPO_BRANCH: openwrt-${{ github.event.inputs.source }}
-
+      # REPO_BRANCH: openwrt-${{ github.event.inputs.source }}
+      REPO_BRANCH: ${{ github.event.inputs.repo_url == 'https://github.com/coolsnowwolf/lede' && 'master' || format('openwrt-{0}', github.event.inputs.source) }}
     steps:
     - name: Checkout
       uses: actions/checkout@main
