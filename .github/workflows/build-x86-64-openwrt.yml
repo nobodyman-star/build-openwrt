@@ -137,6 +137,7 @@ jobs:
         sudo swapoff -a && sudo rm -f /swapfile /mnt/swapfile
         sudo -E apt-get -y purge azure-cli ghc* zulu* llvm* firefox google* dotnet* powershell openjdk* mongodb* moby* || true
         sudo -E apt-get -y update
+        sudo -E apt-get -y install lvm2 btrfs-progs
         sudo -E apt-get -y install $(curl -fsSL is.gd/depends_ubuntu_2404)
         sudo -E systemctl daemon-reload
         sudo -E apt-get -y autoremove --purge
@@ -145,18 +146,43 @@ jobs:
 
     - name: Combine Disks
       run: |
-        MNT_SIZE=$((($(df --block-size=1024 --output=avail /mnt | tail -1) - 1024*1024*1) * 1024))
-        sudo fallocate -l $MNT_SIZE /mnt/mnt.img
+       # 仅修复核心错误：解决fallocate无效长度问题
+        # 1. 定义安全计算函数（避免负数/非数值）
+        calculate_safe_size() {
+          local mount_point=$1
+          local reserve_mb=$2
+          # 获取可用空间（KB），过滤非数字字符
+          local avail_kb=$(df --block-size=1024 --output=avail "$mount_point" 2>/dev/null | tail -1 | tr -d '[:space:]')
+          # 验证数值有效性
+          if ! [[ "$avail_kb" =~ ^[0-9]+$ ]]; then
+            echo "Error: 无法获取 $mount_point 的可用空间"
+            exit 1
+          fi
+          # 计算目标大小（字节），最小值设为100MB
+          local reserve_kb=$((reserve_mb * 1024))
+          local target_kb=$((avail_kb - reserve_kb))
+          [ $target_kb -lt 102400 ] && target_kb=102400
+          echo $((target_kb * 1024))
+        }
+
+        # 2. 安全计算大小 + 替换fallocate为truncate（核心修复）
+        MNT_SIZE=$(calculate_safe_size "/mnt" 1024)
+        sudo truncate -s $MNT_SIZE /mnt/mnt.img
         MNT_NAME=$(sudo losetup -Pf --show /mnt/mnt.img)
         sudo pvcreate -f $MNT_NAME
-        ROOT_SIZE=$((($(df --block-size=1024 --output=avail / | tail -1) - 1024*1024*4) * 1024))
-        sudo fallocate -l $ROOT_SIZE /root.img
+
+        ROOT_SIZE=$(calculate_safe_size "/" 4096)
+        sudo truncate -s $ROOT_SIZE /root.img
         ROOT_NAME=$(sudo losetup -Pf --show /root.img)
         sudo pvcreate -f $ROOT_NAME
-        sudo vgcreate actions $MNT_NAME $ROOT_NAME
+
+        # 3. 原逻辑保留，仅新增卷组创建容错
+        sudo vgcreate actions $MNT_NAME $ROOT_NAME || {
+          sudo vgremove -f actions && sudo vgcreate actions $MNT_NAME $ROOT_NAME
+        }
         sudo lvcreate -n disk -l 100%FREE actions
         LV_NAME=$(sudo lvscan | awk -F "'" '{print $2}')
-        sudo mkfs.btrfs -L combinedisk $LV_NAME
+        sudo mkfs.btrfs -f -L combinedisk $LV_NAME
         sudo mkdir -p /workdir
         sudo mount -o compress=zstd $LV_NAME /workdir
         sudo chown -R runner:runner /workdir && df -hT
