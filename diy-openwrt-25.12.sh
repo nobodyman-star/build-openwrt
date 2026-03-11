@@ -238,7 +238,7 @@ git_clone https://github.com/sirpdboy/luci-app-adguardhome
 git_clone https://github.com/immortalwrt/homeproxy luci-app-homeproxy
 clone_all https://github.com/nikkinikki-org/OpenWrt-nikki
 clone_all https://github.com/nikkinikki-org/OpenWrt-momo
-clone_dir https://github.com/QiuSimons/luci-app-daed daed luci-app-daed
+# clone_dir https://github.com/QiuSimons/luci-app-daed daed luci-app-daed
 clone_all https://github.com/sirpdboy/luci-app-netspeedtest
 clone_all https://github.com/sirpdboy/luci-app-poweroffdevice
 clone_all https://github.com/sirpdboy/luci-app-lucky
