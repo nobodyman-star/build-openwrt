@@ -32,7 +32,7 @@ on:
       partsize:
         description: '设置rootfs大小'
         required: false
-        default: '800'
+        default: '1024'
 
       toolchain:
         description: '使用toolchain缓存'
