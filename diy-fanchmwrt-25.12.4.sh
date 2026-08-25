@@ -289,13 +289,14 @@ fi
 # 修改luci为指定版本
 sed -i 's#^src-git\s\+luci\s\+.*coolsnowwolf.*#src-git luci https://github.com/coolsnowwolf/luci.git;openwrt-25.12#' feeds.conf.default
 # 修改 feeds.conf.default
-sed -i \
--e 's|src-git packages https://git.openwrt.org/feed/packages.git\^.*|src-git packages https://github.com/immortalwrt/packages.git|' \
--e 's|src-git luci https://git.openwrt.org/project/luci.git\^.*|src-git luci https://github.com/immortalwrt/luci.git|' \
--e 's|src-git routing https://git.openwrt.org/feed/routing.git\^.*|src-git routing https://github.com/openwrt/routing.git|' \
--e 's|src-git telephony https://git.openwrt.org/feed/telephony.git\^.*|src-git telephony https://github.com/openwrt/telephony.git|' \
--e 's|src-git video https://github.com/openwrt/video.git\^.*|src-git video https://github.com/openwrt/video.git|' \
-feeds.conf.default
+cat > feeds.conf.default << 'EOF'
+src-git fanchmwrt https://github.com/fanchmwrt/fanchmwrt-packages.git
+src-git packages https://github.com/immortalwrt/packages.git
+src-git luci https://github.com/immortalwrt/luci.git
+src-git routing https://github.com/openwrt/routing.git
+src-git telephony https://github.com/openwrt/telephony.git
+src-git video https://github.com/openwrt/video.git
+EOF
 
 
 
