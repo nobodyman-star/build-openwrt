@@ -181,18 +181,10 @@ echo "DEVICE_TARGET=$DEVICE_TARGET" >>$GITHUB_ENV
 # KERNEL=$(grep -oP 'KERNEL_PATCHVER:=\K[^ ]+' target/linux/$TARGET_NAME/Makefile)
 # KERNEL_VERSION=$(awk -F '-' '/KERNEL/{print $2}' include/kernel-$KERNEL | awk '{print $1}')
 # echo "KERNEL_VERSION=$KERNEL_VERSION" >>$GITHUB_ENV
-# 内核版本
+# 1. 提取KERNEL_PATCHVER（从当前这个文件）
 KERNEL=$(grep -oP 'KERNEL_PATCHVER:=\K[^ ]+' target/linux/$TARGET_NAME/Makefile)
-
-# 兼容新旧版本：优先旧版单独文件，不存在则从 kernel.mk 读取
-if [ -f "include/kernel-$KERNEL" ]; then
-    # 保留原有逻辑，适配旧版本
-    KERNEL_VERSION=$(awk -F '-' '/KERNEL/{print $2}' include/kernel-$KERNEL | awk '{print $1}')
-else
-    # 25.12+ 新版本逻辑
-    KERNEL_VERSION=$(grep -oP "LINUX_VERSION-$KERNEL = \K[0-9.]+" include/kernel.mk)
-fi
-
+# 2. 调用OpenWrt构建系统直接输出完整LINUX_VERSION（6.12.xx）
+KERNEL_VERSION=$(make -s --no-print-directory print-LINUX_VERSION 2>/dev/null)
 echo "KERNEL_VERSION=$KERNEL_VERSION" >> $GITHUB_ENV
 
 
