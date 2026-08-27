@@ -177,10 +177,24 @@ SUBTARGET_NAME=$(awk -F '"' '/CONFIG_TARGET_SUBTARGET/{print $2}' .config)
 DEVICE_TARGET=$TARGET_NAME-$SUBTARGET_NAME
 echo "DEVICE_TARGET=$DEVICE_TARGET" >>$GITHUB_ENV
 
+# 内核版本（不适用25.12版本）
+# KERNEL=$(grep -oP 'KERNEL_PATCHVER:=\K[^ ]+' target/linux/$TARGET_NAME/Makefile)
+# KERNEL_VERSION=$(awk -F '-' '/KERNEL/{print $2}' include/kernel-$KERNEL | awk '{print $1}')
+# echo "KERNEL_VERSION=$KERNEL_VERSION" >>$GITHUB_ENV
 # 内核版本
 KERNEL=$(grep -oP 'KERNEL_PATCHVER:=\K[^ ]+' target/linux/$TARGET_NAME/Makefile)
-KERNEL_VERSION=$(awk -F '-' '/KERNEL/{print $2}' include/kernel-$KERNEL | awk '{print $1}')
-echo "KERNEL_VERSION=$KERNEL_VERSION" >>$GITHUB_ENV
+
+# 兼容新旧版本：优先旧版单独文件，不存在则从 kernel.mk 读取
+if [ -f "include/kernel-$KERNEL" ]; then
+    # 保留原有逻辑，适配旧版本
+    KERNEL_VERSION=$(awk -F '-' '/KERNEL/{print $2}' include/kernel-$KERNEL | awk '{print $1}')
+else
+    # 25.12+ 新版本逻辑
+    KERNEL_VERSION=$(grep -oP "LINUX_VERSION-$KERNEL = \K[0-9.]+" include/kernel.mk)
+fi
+
+echo "KERNEL_VERSION=$KERNEL_VERSION" >> $GITHUB_ENV
+
 
 # Toolchain缓存文件名
 TOOLS_HASH=$(git log --pretty=tformat:"%h" -n1 tools toolchain)
