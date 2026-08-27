@@ -220,6 +220,18 @@ else
     echo "REBUILD_TOOLCHAIN=true" >>$GITHUB_ENV
 fi
 
+# 修改luci为指定版本
+sed -i 's#^src-git\s\+luci\s\+.*coolsnowwolf.*#src-git luci https://github.com/coolsnowwolf/luci.git;openwrt-25.12#' feeds.conf.default
+# 修改 feeds.conf.default
+cat > feeds.conf.default << 'EOF'
+src-git fanchmwrt https://github.com/fanchmwrt/fanchmwrt-packages.git
+src-git packages https://github.com/immortalwrt/packages.git
+src-git luci https://github.com/immortalwrt/luci.git
+src-git routing https://github.com/openwrt/routing.git
+src-git telephony https://github.com/openwrt/telephony.git
+src-git video https://github.com/openwrt/video.git
+EOF
+
 # 更新&安装插件
 begin_time=$(date '+%H:%M:%S')
 ./scripts/feeds update -a 1>/dev/null 2>&1
@@ -286,17 +298,7 @@ if [ $PART_SIZE ]; then
     echo "CONFIG_TARGET_ROOTFS_PARTSIZE=$PART_SIZE" >>$GITHUB_WORKSPACE/$CONFIG_FILE
 fi
 
-# 修改luci为指定版本
-sed -i 's#^src-git\s\+luci\s\+.*coolsnowwolf.*#src-git luci https://github.com/coolsnowwolf/luci.git;openwrt-25.12#' feeds.conf.default
-# 修改 feeds.conf.default
-cat > feeds.conf.default << 'EOF'
-src-git fanchmwrt https://github.com/fanchmwrt/fanchmwrt-packages.git
-src-git packages https://github.com/immortalwrt/packages.git
-src-git luci https://github.com/immortalwrt/luci.git
-src-git routing https://github.com/openwrt/routing.git
-src-git telephony https://github.com/openwrt/telephony.git
-src-git video https://github.com/openwrt/video.git
-EOF
+
 
 
 
