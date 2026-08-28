@@ -177,9 +177,24 @@ SUBTARGET_NAME=$(awk -F '"' '/CONFIG_TARGET_SUBTARGET/{print $2}' .config)
 DEVICE_TARGET=$TARGET_NAME-$SUBTARGET_NAME
 echo "DEVICE_TARGET=$DEVICE_TARGET" >>$GITHUB_ENV
 
-# 内核版本（不适用25.12版本）
+# 内核版本（适用25.12版本）
 KERNEL=$(grep -oP 'KERNEL_PATCHVER:=\K[^ ]+' target/linux/$TARGET_NAME/Makefile)
-KERNEL_VERSION=$(awk -F '-' '/KERNEL/{print $2}' target/linux/generic/kernel-$KERNEL | awk '{print $1}')
+# KERNEL_VERSION=$(awk -F '-' '/KERNEL/{print $2}' target/linux/generic/kernel-$KERNEL | awk '{print $1}')
+if [ -f "include/kernel-${KERNEL}" ]; then
+  # 分支1：include 目录存在对应文件，优先从这里提取
+  KERNEL_VERSION=$(awk -F '-' '/KERNEL/{print $2}' "include/kernel-${KERNEL}" | awk '{print $1}')
+else
+  # 分支2：include 目录不存在，回退到 generic 通用目录提取
+  KERNEL_VERSION=$(awk -F '-' '/KERNEL/{print $2}' "target/linux/generic/kernel-${KERNEL}" | awk '{print $1}')
+fi
+
+# ========== 可选：空值兜底（防止提取失败导致变量为空） ==========
+if [ -z "$KERNEL_VERSION" ]; then
+  echo "⚠️ 警告：两个路径均未提取到内核版本，使用分支版本兜底"
+  KERNEL_VERSION="$KERNEL"
+fi
+
+echo "✅ 最终内核版本: $KERNEL_VERSION"
 echo "KERNEL_VERSION=$KERNEL_VERSION" >>$GITHUB_ENV
 
 
