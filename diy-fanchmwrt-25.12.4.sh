@@ -182,6 +182,26 @@ echo "DEVICE_TARGET=$DEVICE_TARGET" >>$GITHUB_ENV
 # KERNEL_VERSION=$(awk -F '-' '/KERNEL/{print $2}' include/kernel-$KERNEL | awk '{print $1}')
 # echo "KERNEL_VERSION=$KERNEL_VERSION" >>$GITHUB_ENV
 
+# 1. 从目标平台 Makefile 提取内核补丁版本（如 6.12）
+KERNEL=$(grep -oP 'KERNEL_PATCHVER:=\K[^ ]+' target/linux/$TARGET_NAME/Makefile)
+
+# 2. 自动获取默认 SUBTARGET（适配 x86 等多 SUBTARGET 平台）
+# 优先级：显式默认值 > SUBTARGETS 第一个值 > 兜底 generic
+SUBTARGET=$(grep -oP 'DEFAULT_SUBTARGET:=\K[^ ]+' target/linux/$TARGET_NAME/Makefile 2>/dev/null \
+  || grep -oP 'SUBTARGETS:=\K[^ ]+' target/linux/$TARGET_NAME/Makefile 2>/dev/null \
+  || echo "generic")
+
+# 3. 调用 OpenWrt 原生构建系统直接输出完整内核版本
+# 必须在 OpenWrt 源码根目录执行；-s 静默模式过滤无关日志
+KERNEL_FULL=$(make BOARD=$TARGET_NAME SUBTARGET=$SUBTARGET -s print-LINUX_VERSION 2>/dev/null \
+  | grep -E '^[0-9]' \
+  | head -n 1)
+
+# 4. 裁剪出纯版本号（与原脚本逻辑一致，去除 -rc 等后缀）
+KERNEL_VERSION=$(echo "$KERNEL_FULL" | cut -d'-' -f1)
+
+# 5. 写入 GitHub Actions 环境变量
+echo "KERNEL_VERSION=$KERNEL_VERSION" >> $GITHUB_ENV
 
 
 
@@ -242,26 +262,6 @@ begin_time=$(date '+%H:%M:%S')
 ./scripts/feeds install -a 1>/dev/null 2>&1
 status "更新&安装插件"
 
-# 1. 从目标平台 Makefile 提取内核补丁版本（如 6.12）
-KERNEL=$(grep -oP 'KERNEL_PATCHVER:=\K[^ ]+' target/linux/$TARGET_NAME/Makefile)
-
-# 2. 自动获取默认 SUBTARGET（适配 x86 等多 SUBTARGET 平台）
-# 优先级：显式默认值 > SUBTARGETS 第一个值 > 兜底 generic
-SUBTARGET=$(grep -oP 'DEFAULT_SUBTARGET:=\K[^ ]+' target/linux/$TARGET_NAME/Makefile 2>/dev/null \
-  || grep -oP 'SUBTARGETS:=\K[^ ]+' target/linux/$TARGET_NAME/Makefile 2>/dev/null \
-  || echo "generic")
-
-# 3. 调用 OpenWrt 原生构建系统直接输出完整内核版本
-# 必须在 OpenWrt 源码根目录执行；-s 静默模式过滤无关日志
-KERNEL_FULL=$(make BOARD=$TARGET_NAME SUBTARGET=$SUBTARGET -s print-LINUX_VERSION 2>/dev/null \
-  | grep -E '^[0-9]' \
-  | head -n 1)
-
-# 4. 裁剪出纯版本号（与原脚本逻辑一致，去除 -rc 等后缀）
-KERNEL_VERSION=$(echo "$KERNEL_FULL" | cut -d'-' -f1)
-
-# 5. 写入 GitHub Actions 环境变量
-echo "KERNEL_VERSION=$KERNEL_VERSION" >> $GITHUB_ENV
 
 
 # 创建插件保存目录
