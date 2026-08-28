@@ -178,14 +178,14 @@ DEVICE_TARGET=$TARGET_NAME-$SUBTARGET_NAME
 echo "DEVICE_TARGET=$DEVICE_TARGET" >>$GITHUB_ENV
 
 # 内核版本（不适用25.12版本）
-# KERNEL=$(grep -oP 'KERNEL_PATCHVER:=\K[^ ]+' target/linux/$TARGET_NAME/Makefile)
-# KERNEL_VERSION=$(awk -F '-' '/KERNEL/{print $2}' include/kernel-$KERNEL | awk '{print $1}')
-# echo "KERNEL_VERSION=$KERNEL_VERSION" >>$GITHUB_ENV
-# 1. 提取KERNEL_PATCHVER（从当前这个文件）
 KERNEL=$(grep -oP 'KERNEL_PATCHVER:=\K[^ ]+' target/linux/$TARGET_NAME/Makefile)
+KERNEL_VERSION=$(awk -F '-' '/KERNEL/{print $2}' include/kernel-$KERNEL | awk '{print $1}')
+echo "KERNEL_VERSION=$KERNEL_VERSION" >>$GITHUB_ENV
+# 1. 提取KERNEL_PATCHVER（从当前这个文件）
+# KERNEL=$(grep -oP 'KERNEL_PATCHVER:=\K[^ ]+' target/linux/$TARGET_NAME/Makefile)
 # 2. 调用OpenWrt构建系统直接输出完整LINUX_VERSION（6.12.xx）
-KERNEL_VERSION=$(make -s --no-print-directory print-LINUX_VERSION 2>/dev/null)
-echo "KERNEL_VERSION=$KERNEL_VERSION" >> $GITHUB_ENV
+# KERNEL_VERSION=$(make -s --no-print-directory print-LINUX_VERSION 2>/dev/null)
+# echo "KERNEL_VERSION=$KERNEL_VERSION" >> $GITHUB_ENV
 
 
 # Toolchain缓存文件名
