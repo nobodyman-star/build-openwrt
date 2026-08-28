@@ -181,25 +181,27 @@ echo "DEVICE_TARGET=$DEVICE_TARGET" >>$GITHUB_ENV
 # KERNEL=$(grep -oP 'KERNEL_PATCHVER:=\K[^ ]+' target/linux/$TARGET_NAME/Makefile)
 # KERNEL_VERSION=$(awk -F '-' '/KERNEL/{print $2}' include/kernel-$KERNEL | awk '{print $1}')
 # echo "KERNEL_VERSION=$KERNEL_VERSION" >>$GITHUB_ENV
-# 1. 保留原逻辑：从目标平台 Makefile 获取内核补丁版本（如 6.12）
+# 1. 从目标平台 Makefile 提取内核补丁版本（如 6.12）
 KERNEL=$(grep -oP 'KERNEL_PATCHVER:=\K[^ ]+' target/linux/$TARGET_NAME/Makefile)
 
-# 2. 自动获取该平台默认 SUBTARGET（兼容不同平台）
+# 2. 自动获取默认 SUBTARGET（适配 x86 等多 SUBTARGET 平台）
+# 优先级：显式默认值 > SUBTARGETS 第一个值 > 兜底 generic
 SUBTARGET=$(grep -oP 'DEFAULT_SUBTARGET:=\K[^ ]+' target/linux/$TARGET_NAME/Makefile 2>/dev/null \
-  || grep -oP 'SUBTARGET:=\K[^ ]+' target/linux/$TARGET_NAME/Makefile 2>/dev/null \
+  || grep -oP 'SUBTARGETS:=\K[^ ]+' target/linux/$TARGET_NAME/Makefile 2>/dev/null \
   || echo "generic")
 
-# 3. 核心修改：通过 OpenWrt 原生 make 命令直接获取完整内核版本
-# -s 静默输出；过滤掉无关日志，只取版本号行
+# 3. 调用 OpenWrt 原生构建系统直接输出完整内核版本
+# 必须在 OpenWrt 源码根目录执行；-s 静默模式过滤无关日志
 KERNEL_FULL=$(make BOARD=$TARGET_NAME SUBTARGET=$SUBTARGET -s print-LINUX_VERSION 2>/dev/null \
   | grep -E '^[0-9]' \
   | head -n 1)
 
-# 4. 与原逻辑保持一致：提取横杠前的纯版本号（如 6.12.20）
+# 4. 裁剪出纯版本号（与原脚本逻辑一致，去除 -rc 等后缀）
 KERNEL_VERSION=$(echo "$KERNEL_FULL" | cut -d'-' -f1)
 
 # 5. 写入 GitHub Actions 环境变量
-echo "KERNEL_VERSION=$KERNEL_VERSION" >>$GITHUB_ENV
+echo "KERNEL_VERSION=$KERNEL_VERSION" >> $GITHUB_ENV
+
 
 
 
