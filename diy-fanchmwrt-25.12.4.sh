@@ -259,18 +259,20 @@ begin_time=$(date '+%H:%M:%S')
 if [ -f feeds/packages/nfs-kernel-server/Makefile ]; then
     sed -i '/libnl\/host/d' feeds/packages/nfs-kernel-server/Makefile
     echo "✅ 已修复 nfs-kernel-server libnl/host"
+    ./scripts/feeds install nfs-kernel-server luci-app-nfs 1>/dev/null 2>&1
 elif [ -f feeds/packages/nfs-server/Makefile ]; then
     sed -i '/libnl\/host/d' feeds/packages/nfs-server/Makefile
     echo "✅ 已修复 nfs-server libnl/host"
+    ./scripts/feeds install nfs-kernel-server luci-app-nfs 1>/dev/null 2>&1
 elif [ -f package/feeds/packages/nfs-kernel-server/Makefile ]; then
     sed -i '/libnl\/host/d' package/feeds/packages/nfs-kernel-server/Makefile
     echo "✅ 已修复 nfs-kernel-server libnl/host"
+    ./scripts/feeds install nfs-kernel-server luci-app-nfs 1>/dev/null 2>&1
 else
     echo "⚠️ feeds中未找到nfs服务包，跳过修复"
 fi
 
-# 【重点】只安装nfs相关包，不再install全部
-./scripts/feeds install nfs-kernel-server luci-app-nfs 1>/dev/null 2>&1
+
 status "更新&安装插件"
 
 
