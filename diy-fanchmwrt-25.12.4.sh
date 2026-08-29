@@ -272,7 +272,7 @@ clone_all https://github.com/nikkinikki-org/OpenWrt-nikki
 clone_all https://github.com/nikkinikki-org/OpenWrt-momo
 git_clone https://github.com/sirpdboy/luci-app-timecontrol
 # clone_dir https://github.com/QiuSimons/luci-app-daed daed luci-app-daed
-clone_all https://github.com/sirpdboy/luci-app-netspeedtest
+# clone_all https://github.com/sirpdboy/luci-app-netspeedtest
 clone_all https://github.com/sirpdboy/luci-app-poweroffdevice
 clone_all https://github.com/sirpdboy/luci-app-lucky
 clone_all https://github.com/OpenListTeam/OpenList
