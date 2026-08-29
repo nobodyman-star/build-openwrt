@@ -243,11 +243,11 @@ sed -i 's#^src-git\s\+luci\s\+.*coolsnowwolf.*#src-git luci https://github.com/c
 # 修改 feeds.conf.default
 cat > feeds.conf.default << 'EOF'
 src-git fanchmwrt https://github.com/fanchmwrt/fanchmwrt-packages.git
-src-git packages https://github.com/immortalwrt/packages.git
-src-git luci https://github.com/immortalwrt/luci.git
-src-git routing https://github.com/openwrt/routing.git
-src-git telephony https://github.com/openwrt/telephony.git
-src-git video https://github.com/openwrt/video.git
+src-git packages https://github.com/immortalwrt/packages.git;openwrt-25.12
+src-git luci https://github.com/immortalwrt/luci.git;openwrt-25.12
+src-git routing https://github.com/openwrt/routing.git;openwrt-25.12
+src-git telephony https://github.com/openwrt/telephony.git;openwrt-25.12
+src-git video https://github.com/openwrt/video.git;openwrt-25.12
 EOF
 
 # 更新插件
