@@ -255,7 +255,7 @@ begin_time=$(date '+%H:%M:%S')
 ./scripts/feeds update -a 1>/dev/null 2>&1
 
 # 移除不必要依赖
-sed -i '/libnl\/host/d' package/feeds/packages/nfs-kernel-server/Makefile
+sed -i '/libnl\/host/d' feeds/packages/nfs-kernel-server/Makefile
 # 安装插件
 ./scripts/feeds install -a 1>/dev/null 2>&1
 status "更新&安装插件"
