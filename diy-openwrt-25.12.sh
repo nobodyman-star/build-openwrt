@@ -259,6 +259,7 @@ clone_all https://github.com/nikkinikki-org/OpenWrt-momo
 clone_all https://github.com/sirpdboy/netspeedtest
 clone_all https://github.com/sirpdboy/luci-app-poweroffdevice
 clone_all https://github.com/sirpdboy/luci-app-lucky
+clone_all https://github.com/sirpdboy/luci-app-eqosplus.git
 clone_all https://github.com/OpenListTeam/OpenList
 clone_all https://github.com/sbwml/luci-app-mosdns
 clone_all https://github.com/destan19/OpenAppFilter
