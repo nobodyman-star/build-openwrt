@@ -269,7 +269,7 @@ git_clone https://github.com/sirpdboy/luci-app-adguardhome
 git_clone https://github.com/immortalwrt/homeproxy luci-app-homeproxy
 clone_all https://github.com/nikkinikki-org/OpenWrt-nikki
 clone_all https://github.com/nikkinikki-org/OpenWrt-momo
-git_clone https://github.com/sirpdboy/luci-app-timecontrol
+# git_clone https://github.com/sirpdboy/luci-app-timecontrol
 # clone_dir https://github.com/QiuSimons/luci-app-daed daed luci-app-daed
 clone_all https://github.com/sirpdboy/netspeedtest
 clone_all https://github.com/sirpdboy/luci-app-poweroffdevice
@@ -286,6 +286,7 @@ clone_all https://github.com/sbwml/luci-app-mosdns
 # clone_all https://github.com/brvphoenix/luci-app-wrtbwmon
 # clone_all https://github.com/brvphoenix/wrtbwmon
 clone_dir https://github.com/kiddin9/op-packages luci-app-wizard openwrt-bandix luci-app-bandix luci-theme-edge
+clone_dir https://github.com/coolsnowwolf/luci/tree/openwrt-25.12/applications luci-app-timecontrol
 # 科学上网插件
 # clone_all https://github.com/fw876/helloworld
 # clone_all https://github.com/xiaorouji/openwrt-passwall-packages
