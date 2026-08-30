@@ -1,5 +1,6 @@
 #!/bin/bash
-
+make prepare
+make tools/compile
 # 打包Toolchain
 if [[ $REBUILD_TOOLCHAIN = 'true' ]]; then
     echo -e "\e[1;33m开始打包toolchain目录\e[0m"
