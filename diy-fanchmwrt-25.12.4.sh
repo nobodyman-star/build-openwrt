@@ -286,7 +286,7 @@ clone_all https://github.com/sbwml/luci-app-mosdns
 # clone_all https://github.com/brvphoenix/luci-app-wrtbwmon
 # clone_all https://github.com/brvphoenix/wrtbwmon
 clone_dir https://github.com/kiddin9/op-packages luci-app-wizard openwrt-bandix luci-app-bandix luci-theme-edge
-clone_dir https://github.com/coolsnowwolf/luci/tree/openwrt-25.12/applications luci-app-timecontrol
+clone_dir https://github.com/coolsnowwolf/luci/tree/openwrt-25.12/applications luci-app-timecontrol luci-app-control-weburl
 # 科学上网插件
 # clone_all https://github.com/fw876/helloworld
 # clone_all https://github.com/xiaorouji/openwrt-passwall-packages
