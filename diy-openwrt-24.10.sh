@@ -242,6 +242,7 @@ clone_dir https://github.com/QiuSimons/luci-app-daed daed luci-app-daed
 clone_all https://github.com/sirpdboy/netspeedtest
 clone_all https://github.com/sirpdboy/luci-app-poweroffdevice
 clone_all https://github.com/sirpdboy/luci-app-lucky
+clone_all https://github.com/sirpdboy/luci-app-eqosplus.git
 clone_all https://github.com/OpenListTeam/OpenList
 clone_all https://github.com/sbwml/luci-app-mosdns
 git_clone https://github.com/sbwml/packages_lang_golang golang
