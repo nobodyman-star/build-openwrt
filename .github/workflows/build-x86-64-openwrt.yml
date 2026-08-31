@@ -239,10 +239,10 @@ jobs:
         mkdir -p files/etc/uci-defaults
         cp $GITHUB_WORKSPACE/scripts/init-settings.sh files/etc/uci-defaults/99-init-settings
         echo -e "$(nproc) thread compile"
-        make -j$(nproc) || make -j1 V=s
+        make -j2 || make -j1 V=s 
         echo "FILE_DATE=$(date +"%Y.%m.%d")" >>$GITHUB_ENV
         echo "DATE=$(date +"%Y-%m-%d %H:%M:%S")" >>$GITHUB_ENV
-
+make    # make -j$(nproc) 
     - name: Upload Bin Directory
       if: steps.compile.conclusion == 'success' && env.UPLOAD_BIN_DIR == 'true'
       uses: actions/upload-artifact@main
