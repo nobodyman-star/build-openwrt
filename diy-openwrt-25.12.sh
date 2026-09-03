@@ -305,6 +305,12 @@ fi
 # 修改luci为指定版本
 sed -i 's#^src-git\s\+luci\s\+.*coolsnowwolf.*#src-git luci https://github.com/coolsnowwolf/luci.git;openwrt-25.12#' feeds.conf.default
 
+# 修改显示信息
+sed -i '/DISTRIB_REVISION/d' package/base-files/files/etc/openwrt_release
+echo "DISTRIB_REVISION=''" >> package/base-files/files/etc/openwrt_release
+sed -i '/DISTRIB_DESCRIPTION/d' package/base-files/files/etc/openwrt_release
+echo "DISTRIB_DESCRIPTION='ImmortalWrt25.12 compiled by T '" >> package/base-files/files/etc/openwrt_release
+
 # 修改默认IP
 [ $DEFAULT_IP ] && sed -i '/n) ipad/s/".*"/"'"$DEFAULT_IP"'"/' package/base-files/files/bin/config_generate
 
