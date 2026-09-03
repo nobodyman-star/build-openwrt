@@ -311,7 +311,7 @@ sed -i '/DISTRIB_REVISION/d' package/base-files/files/etc/openwrt_release
 echo "DISTRIB_REVISION=''" >> package/base-files/files/etc/openwrt_release
 sed -i '/DISTRIB_DESCRIPTION/d' package/base-files/files/etc/openwrt_release
 echo "DISTRIB_DESCRIPTION='ImmortalWrt25.12 compiled by T on ${BUILD_TIME}'" >> package/base-files/files/etc/openwrt_release
-
+cat package/base-files/files/etc/openwrt_release
 # 修改默认IP
 [ $DEFAULT_IP ] && sed -i '/n) ipad/s/".*"/"'"$DEFAULT_IP"'"/' package/base-files/files/bin/config_generate
 
