@@ -308,9 +308,12 @@ sed -i 's#^src-git\s\+luci\s\+.*coolsnowwolf.*#src-git luci https://github.com/c
 # 修改显示信息
 BUILD_TIME=$(date +"%Y-%m-%d")
 sed -i "s|^DISTRIB_DESCRIPTION=.*|DISTRIB_DESCRIPTION='ImmortalWrt25.12 compiled by T on ${BUILD_TIME}'|" package/base-files/files/etc/openwrt_release
-# 可选：清空 %R 的输出
-sed -i "s|^DISTRIB_REVISION=.*|DISTRIB_REVISION=''|" package/base-files/files/etc/openwrt_release
-cat package/base-files/files/etc/openwrt_release
+JSFILE="feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js"
+# sed -i "s|boardinfo.release.description|\"ImmortalWrt25.12 compiled by T on ${BUILD_TIME}\"|" "${JSFILE}"
+sed -i "s|(L.isObject(boardinfo.release) ? boardinfo.release.description + ' \/ ' : '') + (luciversion || '')|(L.isObject(boardinfo.release) ? boardinfo.release.description + ' \/ ' : '') + (luciversion || '') + ' | Compiled on ${BUILD_TIME} by T'|" "${JSFILE}"
+
+
+
 # 修改默认IP
 [ $DEFAULT_IP ] && sed -i '/n) ipad/s/".*"/"'"$DEFAULT_IP"'"/' package/base-files/files/bin/config_generate
 
