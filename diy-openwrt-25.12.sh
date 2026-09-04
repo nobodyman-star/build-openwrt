@@ -309,10 +309,10 @@ sed -i 's#^src-git\s\+luci\s\+.*coolsnowwolf.*#src-git luci https://github.com/c
  
  BUILD_TIME=$(date +"%Y-%m-%d")
  RELEASE_FILE="package/base-files/files/etc/openwrt_release"
- sed -i "s#^DISTRIB_DESCRIPTION=.*#DISTRIB_DESCRIPTION='ImmortalWrt25.12 compiled by T on ${BUILD_TIME}'#" "${RELEASE_FILE}"
+ sed -i "s#^DISTRIB_DESCRIPTION=.*#DISTRIB_DESCRIPTION='ImmortalWrt25.12 built by T on ${BUILD_TIME}'#" "${RELEASE_FILE}"
  JSFILE="feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js"
  
- sed -i "s#(L.isObject(boardinfo.release) ? boardinfo.release.description + ' / ' : '') + (luciversion || '')#(L.isObject(boardinfo.release) ? boardinfo.release.description + ' / ' : '') + (luciversion || '') + ' | Compiled on ${BUILD_TIME} by T'#" "${JSFILE}"
+ sed -i "s#(L.isObject(boardinfo.release) ? boardinfo.release.description + ' / ' : '') + (luciversion || '')#(L.isObject(boardinfo.release) ? boardinfo.release.description + ' / ' : '') + (luciversion || '') + ' | Built on ${BUILD_TIME} by T'#" "${JSFILE}"
 
 
 # 修改默认IP
