@@ -305,7 +305,7 @@ fi
 # 修改luci为指定版本
 sed -i 's#^src-git\s\+luci\s\+.*coolsnowwolf.*#src-git luci https://github.com/coolsnowwolf/luci.git;openwrt-25.12#' feeds.conf.default
 
-# 修改显示信息
+# 修改首页固件显示信息
  
  BUILD_TIME=$(date +"%Y-%m-%d")
  RELEASE_FILE="package/base-files/files/etc/openwrt_release"
