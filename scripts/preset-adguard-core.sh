@@ -5,8 +5,17 @@
 AGH_CORE="https://github.com/AdguardTeam/AdGuardHome/releases/latest/download/AdGuardHome_linux_${1}.tar.gz"
 echo "AGH_CORE: $AGH_CORE"
 
-# 使用 --wildcards 匹配文件夹内的二进制文件
-wget -qO- $AGH_CORE | tar xOz --wildcards '*/AdGuardHome' > files/usr/bin/AdGuardHome
+# 方法1：先下载到临时文件，再提取（最可靠）
+tmp_file=$(mktemp)
+wget -qO "$tmp_file" "$AGH_CORE"
+
+# 列出压缩包内容，查看实际路径
+tar -tzf "$tmp_file" | grep AdGuardHome
+
+# 提取二进制文件（使用 --strip-components 去除顶层目录）
+tar -xzf "$tmp_file" -C files/usr/bin --strip-components=1 */AdGuardHome
+
+rm -f "$tmp_file"
 
 # 检查文件是否成功提取
 if [ ! -s files/usr/bin/AdGuardHome ]; then
