@@ -6,7 +6,7 @@ AGH_CORE="https://github.com/AdguardTeam/AdGuardHome/releases/latest/download/Ad
 echo "AGH_CORE: $AGH_CORE"
 
 # 从压缩包提取 AdGuardHome 二进制文件
-wget -qO- "$AGH_CORE" | tar -xzf - -C files/usr/bin --strip-components=1 */AdGuardHome
+wget -qO- "$AGH_CORE" | tar -xzf - -C files/usr/bin --strip-components=1 '*/AdGuardHome'
 
 # 检查文件是否成功提取
 if [ ! -s files/usr/bin/AdGuardHome ]; then
