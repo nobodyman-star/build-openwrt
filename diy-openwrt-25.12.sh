@@ -253,7 +253,7 @@ color cy "添加&替换插件"
 git_clone https://github.com/nobodyman-star/luci-app-adguardhome
 git_clone https://github.com/immortalwrt/homeproxy luci-app-homeproxy
 # clone_all https://github.com/nikkinikki-org/OpenWrt-nikki
-# clone_all https://github.com/nikkinikki-org/OpenWrt-momo
+clone_all https://github.com/nikkinikki-org/OpenWrt-momo
 # git_clone https://github.com/sirpdboy/luci-app-timecontrol
 # clone_dir https://github.com/QiuSimons/luci-app-daed daed luci-app-daed
 clone_all https://github.com/sirpdboy/netspeedtest
