@@ -252,8 +252,8 @@ color cy "添加&替换插件"
 # git_clone https://github.com/sirpdboy/luci-app-adguardhome
 git_clone https://github.com/nobodyman-star/luci-app-adguardhome
 git_clone https://github.com/immortalwrt/homeproxy luci-app-homeproxy
-clone_all https://github.com/nikkinikki-org/OpenWrt-nikki
-clone_all https://github.com/nikkinikki-org/OpenWrt-momo
+# clone_all https://github.com/nikkinikki-org/OpenWrt-nikki
+# clone_all https://github.com/nikkinikki-org/OpenWrt-momo
 # git_clone https://github.com/sirpdboy/luci-app-timecontrol
 # clone_dir https://github.com/QiuSimons/luci-app-daed daed luci-app-daed
 clone_all https://github.com/sirpdboy/netspeedtest
@@ -270,7 +270,7 @@ clone_all https://github.com/chenmozhijin/luci-app-socat
 # clone_all https://github.com/asvow/luci-app-tailscale
 clone_all https://github.com/brvphoenix/luci-app-wrtbwmon
 clone_all https://github.com/brvphoenix/wrtbwmon
-clone_dir https://github.com/kiddin9/op-packages luci-app-wizard openwrt-bandix luci-app-bandix luci-theme-edge luci-app-control-weburl
+clone_dir https://github.com/kiddin9/op-packages luci-app-wizard openwrt-bandix luci-app-bandix luci-theme-edge luci-app-control-weburl luci-app-nikki nikki
 
 # 科学上网插件
 # clone_all https://github.com/fw876/helloworld
