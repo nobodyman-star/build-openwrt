@@ -279,7 +279,7 @@ clone_all https://github.com/Openwrt-Passwall/openwrt-passwall
 clone_all https://github.com/Openwrt-Passwall/openwrt-passwall2
 # clone_dir https://github.com/vernesong/OpenClash luci-app-openclash
 # clone_dir https://github.com/sbwml/openwrt_helloworld shadowsocks-rust
-
+  clone_all https://github.com/kenzok8/openwrt-daede
 # Themes
 # git_clone https://github.com/kiddin9/luci-theme-edge
 # git_clone https://github.com/jerrykuku/luci-theme-argon
