@@ -270,7 +270,7 @@ clone_all https://github.com/xuanranran/luci-app-onliner
 # clone_all https://github.com/asvow/luci-app-tailscale
 clone_all https://github.com/brvphoenix/luci-app-wrtbwmon
 clone_all https://github.com/brvphoenix/wrtbwmon
-clone_dir https://github.com/kiddin9/op-packages luci-app-netwiz openwrt-bandix luci-app-bandix luci-theme-aurora luci-app-control-weburl luci-app-nikki mihomo-meta nikki clashoo mihomo luci-theme-spectra    
+clone_dir https://github.com/kiddin9/op-packages openwrt-bandix luci-app-bandix luci-theme-aurora luci-app-control-weburl luci-app-nikki mihomo-meta nikki clashoo mihomo luci-theme-spectra    
 # clone_dir https://github.com/kenzok8/small-package luci-app-wizard openwrt-bandix luci-app-bandix luci-theme-aurora luci-app-control-weburl clashoo mihomo luci-theme-spectra
 # 科学上网插件
 # clone_all https://github.com/fw876/helloworld
