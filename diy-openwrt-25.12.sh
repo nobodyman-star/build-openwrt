@@ -259,14 +259,14 @@ clone_all https://github.com/nikkinikki-org/OpenWrt-nikki
 clone_all https://github.com/sirpdboy/netspeedtest
 clone_all https://github.com/sirpdboy/luci-app-poweroffdevice
 clone_all https://github.com/sirpdboy/luci-app-lucky
-clone_all https://github.com/sirpdboy/luci-app-eqosplus.git
-clone_all https://github.com/OpenListTeam/OpenList
-clone_all https://github.com/sbwml/luci-app-mosdns
+# clone_all https://github.com/sirpdboy/luci-app-eqosplus.git
+# clone_all https://github.com/OpenListTeam/OpenList
+# clone_all https://github.com/sbwml/luci-app-mosdns
 clone_all https://github.com/destan19/OpenAppFilter
 clone_all https://github.com/xuanranran/luci-app-onliner
-clone_all https://github.com/linkease/istore-ui
-clone_all https://github.com/linkease/istore luci
-clone_all https://github.com/chenmozhijin/luci-app-socat
+# clone_all https://github.com/linkease/istore-ui
+# clone_all https://github.com/linkease/istore luci
+# clone_all https://github.com/chenmozhijin/luci-app-socat
 # clone_all https://github.com/asvow/luci-app-tailscale
 clone_all https://github.com/brvphoenix/luci-app-wrtbwmon
 clone_all https://github.com/brvphoenix/wrtbwmon
@@ -276,7 +276,7 @@ clone_dir https://github.com/kiddin9/op-packages luci-app-wizard openwrt-bandix 
 # clone_all https://github.com/fw876/helloworld
 # clone_all https://github.com/Openwrt-Passwall/openwrt-passwall-packages
 clone_all https://github.com/Openwrt-Passwall/openwrt-passwall
-clone_all https://github.com/Openwrt-Passwall/openwrt-passwall2
+# clone_all https://github.com/Openwrt-Passwall/openwrt-passwall2
 # clone_dir https://github.com/vernesong/OpenClash luci-app-openclash
 # clone_dir https://github.com/sbwml/openwrt_helloworld shadowsocks-rust
 # clone_all https://github.com/kenzok8/openwrt-daede
@@ -287,10 +287,10 @@ clone_all https://github.com/Openwrt-Passwall/openwrt-passwall2
 git_clone https://github.com/sirpdboy/luci-app-kucat-config
 git_clone https://github.com/sirpdboy/luci-theme-kucat
 # 晶晨宝盒
-clone_all https://github.com/ophub/luci-app-amlogic
-sed -i "s|firmware_repo.*|firmware_repo 'https://github.com/$GITHUB_REPOSITORY'|g" $destination_dir/luci-app-amlogic/root/etc/config/amlogic
+# clone_all https://github.com/ophub/luci-app-amlogic
+# sed -i "s|firmware_repo.*|firmware_repo 'https://github.com/$GITHUB_REPOSITORY'|g" $destination_dir/luci-app-amlogic/root/etc/config/amlogic
 # sed -i "s|kernel_path.*|kernel_path 'https://github.com/ophub/kernel'|g" $destination_dir/luci-app-amlogic/root/etc/config/amlogic
-sed -i "s|ARMv8|$RELEASE_TAG|g" $destination_dir/luci-app-amlogic/root/etc/config/amlogic
+# sed -i "s|ARMv8|$RELEASE_TAG|g" $destination_dir/luci-app-amlogic/root/etc/config/amlogic
 
 # 加载个人设置
 begin_time=$(date '+%H:%M:%S')
@@ -304,7 +304,7 @@ if [ $PART_SIZE ]; then
 fi
 
 # 修改luci为指定版本
-sed -i 's#^src-git\s\+luci\s\+.*coolsnowwolf.*#src-git luci https://github.com/coolsnowwolf/luci.git;openwrt-25.12#' feeds.conf.default
+# sed -i 's#^src-git\s\+luci\s\+.*coolsnowwolf.*#src-git luci https://github.com/coolsnowwolf/luci.git;openwrt-25.12#' feeds.conf.default
 
 # 修改首页固件显示信息
  
