@@ -260,7 +260,7 @@ clone_all https://github.com/sirpdboy/luci-app-lucky
 # clone_all https://github.com/sirpdboy/luci-app-eqosplus.git
 # clone_all https://github.com/OpenListTeam/OpenList
 # clone_all https://github.com/sbwml/luci-app-mosdns
-git_clone https://github.com/destan19/OpenAppFilter OpenAppFilter
+clone_all https://github.com/destan19/OpenAppFilter 
 git_clone https://github.com/xuanranran/luci-app-onliner luci-app-onliner
 clone_dir https://github.com/kiddin9/op-packages luci-app-timecontrol luci-app-trafficctl luci-app-dufs openwrt-bandix luci-app-bandix luci-theme-aurora luci-app-control-weburl luci-app-nikki mihomo-meta nikki clashoo mihomo luci-theme-spectra    
 # clone_all https://github.com/YusDyr/luci-app-trafficctl
