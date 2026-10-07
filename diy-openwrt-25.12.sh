@@ -248,13 +248,11 @@ destination_dir="package/A"
 color cy "添加&替换插件"
 
 # 添加额外插件
-# clone_dir openwrt-23.05 https://github.com/coolsnowwolf/luci luci-app-adguardhome
+
 # git_clone https://github.com/sirpdboy/luci-app-adguardhome
 git_clone https://github.com/nobodyman-star/luci-app-adguardhome
 git_clone https://github.com/immortalwrt/homeproxy luci-app-homeproxy
 # clone_all https://github.com/nikkinikki-org/OpenWrt-nikki
-# clone_all https://github.com/nikkinikki-org/OpenWrt-momo
-# git_clone https://github.com/sirpdboy/luci-app-timecontrol
 # clone_dir https://github.com/QiuSimons/luci-app-daed daed luci-app-daed
 clone_all https://github.com/sirpdboy/netspeedtest
 clone_all https://github.com/sirpdboy/luci-app-poweroffdevice
@@ -264,15 +262,9 @@ clone_all https://github.com/sirpdboy/luci-app-lucky
 # clone_all https://github.com/sbwml/luci-app-mosdns
 git_clone https://github.com/destan19/OpenAppFilter OpenAppFilter
 git_clone https://github.com/xuanranran/luci-app-onliner luci-app-onliner
-# clone_all https://github.com/linkease/istore-ui
-# clone_all https://github.com/linkease/istore luci
-# clone_all https://github.com/chenmozhijin/luci-app-socat
-# clone_all https://github.com/asvow/luci-app-tailscale
-# clone_all https://github.com/brvphoenix/luci-app-wrtbwmon
-# clone_all https://github.com/brvphoenix/wrtbwmon
 clone_dir https://github.com/kiddin9/op-packages luci-app-timecontrol luci-app-trafficctl luci-app-dufs openwrt-bandix luci-app-bandix luci-theme-aurora luci-app-control-weburl luci-app-nikki mihomo-meta nikki clashoo mihomo luci-theme-spectra    
 # clone_all https://github.com/YusDyr/luci-app-trafficctl
-# clone_dir https://github.com/kenzok8/small-package luci-app-wizard openwrt-bandix luci-app-bandix luci-theme-aurora luci-app-control-weburl clashoo mihomo luci-theme-spectra
+
 # 科学上网插件
 # clone_all https://github.com/fw876/helloworld
 # clone_all https://github.com/Openwrt-Passwall/openwrt-passwall-packages
