@@ -262,8 +262,8 @@ clone_all https://github.com/sirpdboy/luci-app-lucky
 # clone_all https://github.com/sirpdboy/luci-app-eqosplus.git
 # clone_all https://github.com/OpenListTeam/OpenList
 # clone_all https://github.com/sbwml/luci-app-mosdns
-clone_all https://github.com/destan19/OpenAppFilter
-clone_all https://github.com/xuanranran/luci-app-onliner
+git_clone https://github.com/destan19/OpenAppFilter OpenAppFilter
+git_clone https://github.com/xuanranran/luci-app-onliner luci-app-onliner
 # clone_all https://github.com/linkease/istore-ui
 # clone_all https://github.com/linkease/istore luci
 # clone_all https://github.com/chenmozhijin/luci-app-socat
