@@ -254,13 +254,13 @@ git_clone https://github.com/nobodyman-star/luci-app-adguardhome
 git_clone https://github.com/immortalwrt/homeproxy luci-app-homeproxy
 # clone_all https://github.com/nikkinikki-org/OpenWrt-nikki
 # clone_dir https://github.com/QiuSimons/luci-app-daed daed luci-app-daed
-clone_all https://github.com/sirpdboy/netspeedtest
-clone_all https://github.com/sirpdboy/luci-app-poweroffdevice
-clone_all https://github.com/sirpdboy/luci-app-lucky
+clone_dir https://github.com/sirpdboy/netspeedtest luci-app-netspeedtest ookla-speedtest homebox
+clone_dir https://github.com/sirpdboy/luci-app-poweroffdevice luci-app-poweroffdevice
+clone_dir https://github.com/sirpdboy/luci-app-lucky luci-app-lucky lucky
 # clone_all https://github.com/sirpdboy/luci-app-eqosplus.git
 # clone_all https://github.com/OpenListTeam/OpenList
 # clone_all https://github.com/sbwml/luci-app-mosdns
-clone_all https://github.com/destan19/OpenAppFilter 
+clone_dir https://github.com/destan19/OpenAppFilter luci-app-oaf oaf open-app-filter
 git_clone https://github.com/xuanranran/luci-app-onliner luci-app-onliner
 clone_dir https://github.com/kiddin9/op-packages luci-app-timecontrol luci-app-dufs openwrt-bandix luci-app-bandix luci-theme-aurora luci-app-control-weburl luci-app-nikki mihomo-meta nikki clashoo mihomo luci-theme-spectra    
 # clone_all https://github.com/YusDyr/luci-app-trafficctl
