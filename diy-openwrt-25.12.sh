@@ -262,13 +262,13 @@ clone_dir https://github.com/sirpdboy/luci-app-lucky luci-app-lucky lucky
 # clone_all https://github.com/sbwml/luci-app-mosdns
 clone_dir https://github.com/destan19/OpenAppFilter luci-app-oaf oaf open-app-filter
 git_clone https://github.com/xuanranran/luci-app-onliner luci-app-onliner
-clone_dir https://github.com/kiddin9/op-packages luci-app-timecontrol luci-app-dufs openwrt-bandix luci-app-bandix luci-theme-aurora luci-app-control-weburl luci-app-nikki mihomo-meta nikki clashoo mihomo luci-theme-spectra    
+clone_dir https://github.com/kiddin9/op-packages luci-app-timecontrol luci-app-dufs xray-core openwrt-bandix luci-app-bandix luci-theme-aurora luci-app-control-weburl luci-app-nikki mihomo-meta nikki clashoo mihomo luci-theme-spectra    
 # clone_all https://github.com/YusDyr/luci-app-trafficctl
 
 # 科学上网插件
 # clone_all https://github.com/fw876/helloworld
 clone_all https://github.com/Openwrt-Passwall/openwrt-passwall
-clone_dir https://github.com/Openwrt-Passwall/openwrt-passwall-packages hysteria xray-core sing-box chinadns-ng geoview
+clone_dir https://github.com/Openwrt-Passwall/openwrt-passwall-packages hysteria sing-box chinadns-ng geoview
 # clone_all https://github.com/Openwrt-Passwall/openwrt-passwall2
 # clone_dir https://github.com/vernesong/OpenClash luci-app-openclash
 # clone_dir https://github.com/sbwml/openwrt_helloworld shadowsocks-rust
