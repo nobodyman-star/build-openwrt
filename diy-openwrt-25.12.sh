@@ -264,7 +264,7 @@ clone_dir https://github.com/destan19/OpenAppFilter luci-app-oaf oaf open-app-fi
 git_clone https://github.com/xuanranran/luci-app-onliner luci-app-onliner
 clone_dir https://github.com/kiddin9/op-packages luci-app-trafficctl luci-app-timecontrol luci-app-dufs openwrt-bandix luci-app-bandix luci-theme-aurora luci-app-control-weburl luci-app-nikki mihomo-meta nikki clashoo mihomo luci-theme-spectra    
 # clone_all https://github.com/YusDyr/luci-app-trafficctl
-clone_dir https://github.com/kiddin9/op-packages luci-app-qosmate qosmate
+clone_dir https://github.com/kiddin9/op-packages luci-app-qosmate qosmate luci-app-eqosplus
 
 # 科学上网插件
 # clone_all https://github.com/fw876/helloworld
