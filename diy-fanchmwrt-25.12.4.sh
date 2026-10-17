@@ -264,19 +264,19 @@ destination_dir="package/A"
 color cy "添加&替换插件"
 
 # 添加额外插件
-# clone_dir openwrt-23.05 https://github.com/coolsnowwolf/luci luci-app-adguardhome
-git_clone https://github.com/sirpdboy/luci-app-adguardhome
+git_clone https://github.com/nobodyman-star/luci-app-adguardhome
+#git_clone https://github.com/sirpdboy/luci-app-adguardhome
 git_clone https://github.com/immortalwrt/homeproxy luci-app-homeproxy
-clone_all https://github.com/nikkinikki-org/OpenWrt-nikki
-clone_all https://github.com/nikkinikki-org/OpenWrt-momo
+# clone_all https://github.com/nikkinikki-org/OpenWrt-nikki
+# clone_all https://github.com/nikkinikki-org/OpenWrt-momo
 # git_clone https://github.com/sirpdboy/luci-app-timecontrol
 # clone_dir https://github.com/QiuSimons/luci-app-daed daed luci-app-daed
 clone_all https://github.com/sirpdboy/netspeedtest
 clone_all https://github.com/sirpdboy/luci-app-poweroffdevice
 clone_all https://github.com/sirpdboy/luci-app-lucky
-clone_all https://github.com/sirpdboy/luci-app-eqosplus.git
-clone_all https://github.com/OpenListTeam/OpenList
-clone_all https://github.com/sbwml/luci-app-mosdns
+# clone_all https://github.com/sirpdboy/luci-app-eqosplus
+# clone_all https://github.com/OpenListTeam/OpenList
+# clone_all https://github.com/sbwml/luci-app-mosdns
 # git_clone https://github.com/sbwml/packages_lang_golang golang
 # clone_all https://github.com/destan19/OpenAppFilter
 # clone_all https://github.com/xuanranran/luci-app-onliner
@@ -286,7 +286,7 @@ clone_all https://github.com/sbwml/luci-app-mosdns
 # clone_all https://github.com/asvow/luci-app-tailscale
 # clone_all https://github.com/brvphoenix/luci-app-wrtbwmon
 # clone_all https://github.com/brvphoenix/wrtbwmon
-clone_dir https://github.com/kiddin9/op-packages luci-app-wizard openwrt-bandix luci-app-bandix luci-theme-edge luci-app-control-weburl
+clone_dir https://github.com/kiddin9/op-packages openwrt-bandix luci-app-bandix luci-app-control-weburl luci-app-eqosplus
 
 # 科学上网插件
 # clone_all https://github.com/fw876/helloworld
