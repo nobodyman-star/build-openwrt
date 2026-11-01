@@ -294,7 +294,7 @@ clone_all https://github.com/Openwrt-Passwall/openwrt-passwall
 clone_all https://github.com/Openwrt-Passwall/openwrt-passwall-packages 
 clone_dir https://github.com/vernesong/OpenClash luci-app-openclash
 # clone_dir https://github.com/sbwml/openwrt_helloworld shadowsocks-rust
-# clone_dir https://github.com/immortalwrt/packages.git net
+clone_dir https://github.com/immortalwrt/packages.git Xray-core
 
 # Themes
 # git_clone https://github.com/kiddin9/luci-theme-edge
