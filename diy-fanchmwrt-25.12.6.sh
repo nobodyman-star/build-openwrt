@@ -291,7 +291,7 @@ clone_dir https://github.com/kiddin9/op-packages luci-app-timecontrol luci-app-d
 # 科学上网插件
 # clone_all https://github.com/fw876/helloworld
 clone_all https://github.com/Openwrt-Passwall/openwrt-passwall
-clone_dir https://github.com/Openwrt-Passwall/openwrt-passwall-packages hysteria sing-box chinadns-ng geoview xray-core
+clone_all https://github.com/Openwrt-Passwall/openwrt-passwall-packages 
 clone_dir https://github.com/vernesong/OpenClash luci-app-openclash
 # clone_dir https://github.com/sbwml/openwrt_helloworld shadowsocks-rust
 
