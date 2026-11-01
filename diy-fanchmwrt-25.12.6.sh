@@ -241,14 +241,14 @@ fi
 # 修改luci为指定版本
 sed -i 's#^src-git\s\+luci\s\+.*coolsnowwolf.*#src-git luci https://github.com/coolsnowwolf/luci.git;openwrt-25.12#' feeds.conf.default
 # 修改 feeds.conf.default
-#cat > feeds.conf.default << 'EOF'
-#src-git fanchmwrt https://github.com/fanchmwrt/fanchmwrt-packages.git
-#src-git packages https://github.com/immortalwrt/packages.git;openwrt-25.12
-#src-git luci https://github.com/immortalwrt/luci.git;openwrt-25.12
-#src-git routing https://github.com/openwrt/routing.git;openwrt-25.12
-#src-git telephony https://github.com/openwrt/telephony.git;openwrt-25.12
-#src-git video https://github.com/openwrt/video.git;openwrt-25.12
-#EOF
+cat > feeds.conf.default << 'EOF'
+src-git fanchmwrt https://github.com/fanchmwrt/fanchmwrt-packages.git
+src-git packages https://github.com/immortalwrt/packages.git;openwrt-25.12
+src-git luci https://github.com/immortalwrt/luci.git;openwrt-25.12
+src-git routing https://github.com/openwrt/routing.git;openwrt-25.12
+src-git telephony https://github.com/openwrt/telephony.git;openwrt-25.12
+src-git video https://github.com/openwrt/video.git;openwrt-25.12
+EOF
 
 # 更新插件
 begin_time=$(date '+%H:%M:%S')
@@ -291,10 +291,10 @@ clone_dir https://github.com/kiddin9/op-packages luci-app-timecontrol luci-app-d
 # 科学上网插件
 # clone_all https://github.com/fw876/helloworld
 clone_all https://github.com/Openwrt-Passwall/openwrt-passwall
-clone_all https://github.com/Openwrt-Passwall/openwrt-passwall-packages 
+# clone_all https://github.com/Openwrt-Passwall/openwrt-passwall-packages 
 clone_dir https://github.com/vernesong/OpenClash luci-app-openclash
 # clone_dir https://github.com/sbwml/openwrt_helloworld shadowsocks-rust
-clone_dir https://github.com/immortalwrt/packages.git xray-core
+# clone_dir https://github.com/immortalwrt/packages.git xray-core
 
 # Themes
 # git_clone https://github.com/kiddin9/luci-theme-edge
