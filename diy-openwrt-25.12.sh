@@ -266,6 +266,8 @@ clone_dir https://github.com/kiddin9/op-packages luci-app-trafficctl luci-app-ti
 # clone_all https://github.com/YusDyr/luci-app-trafficctl
 clone_dir https://github.com/kiddin9/op-packages luci-app-qosmate qosmate luci-app-eqosplus
 git_clone https://github.com/nobodyman-star/immortalwrt-console-menu immortalwrt-console-menu
+git_clone https://github.com/nobodyman-star/console-menu console-menu
+
 # 科学上网插件
 # clone_all https://github.com/fw876/helloworld
 clone_all https://github.com/Openwrt-Passwall/openwrt-passwall
