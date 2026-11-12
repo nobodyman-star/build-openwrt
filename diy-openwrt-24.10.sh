@@ -265,7 +265,7 @@ git_clone https://github.com/xuanranran/luci-app-onliner luci-app-onliner
 clone_dir https://github.com/kiddin9/op-packages luci-app-trafficctl luci-app-timecontrol luci-app-dufs openwrt-bandix luci-app-bandix luci-theme-aurora luci-app-control-weburl luci-app-nikki mihomo-meta nikki clashoo mihomo luci-theme-spectra    
 # clone_all https://github.com/YusDyr/luci-app-trafficctl
 clone_dir https://github.com/kiddin9/op-packages luci-app-qosmate qosmate luci-app-eqosplus
-git_clone https://github.com/nobodyman-star/immortalwrt-console-menu immortalwrt-console-menu
+# git_clone https://github.com/nobodyman-star/immortalwrt-console-menu immortalwrt-console-menu
 git_clone https://github.com/nobodyman-star/console-menu console-menu
 
 # 科学上网插件
