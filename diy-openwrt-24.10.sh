@@ -179,7 +179,22 @@ echo "DEVICE_TARGET=$DEVICE_TARGET" >>$GITHUB_ENV
 
 # 内核版本
 KERNEL=$(grep -oP 'KERNEL_PATCHVER:=\K[^ ]+' target/linux/$TARGET_NAME/Makefile)
-KERNEL_VERSION=$(awk -F '-' '/KERNEL/{print $2}' include/kernel-$KERNEL | awk '{print $1}')
+# KERNEL_VERSION=$(awk -F '-' '/KERNEL/{print $2}' target/linux/generic/kernel-$KERNEL | awk '{print $1}')
+if [ -f "include/kernel-${KERNEL}" ]; then
+  # 分支1：include 目录存在对应文件，优先从这里提取
+  KERNEL_VERSION=$(awk -F '-' '/KERNEL/{print $2}' "include/kernel-${KERNEL}" | awk '{print $1}')
+else
+  # 分支2：include 目录不存在，回退到 generic 通用目录提取
+  KERNEL_VERSION=$(awk -F '-' '/KERNEL/{print $2}' "target/linux/generic/kernel-${KERNEL}" | awk '{print $1}')
+fi
+
+# ========== 可选：空值兜底（防止提取失败导致变量为空） ==========
+if [ -z "$KERNEL_VERSION" ]; then
+  echo "⚠️ 警告：两个路径均未提取到内核版本，使用分支版本兜底"
+  KERNEL_VERSION="$KERNEL"
+fi
+
+echo "✅ 最终内核版本: $KERNEL_VERSION"
 echo "KERNEL_VERSION=$KERNEL_VERSION" >>$GITHUB_ENV
 
 # Toolchain缓存文件名
@@ -233,36 +248,34 @@ destination_dir="package/A"
 color cy "添加&替换插件"
 
 # 添加额外插件
-# clone_dir openwrt-23.05 https://github.com/coolsnowwolf/luci luci-app-adguardhome
-git_clone https://github.com/sirpdboy/luci-app-adguardhome
+
+# git_clone https://github.com/sirpdboy/luci-app-adguardhome
+git_clone https://github.com/nobodyman-star/luci-app-adguardhome
 git_clone https://github.com/immortalwrt/homeproxy luci-app-homeproxy
-clone_all https://github.com/nikkinikki-org/OpenWrt-nikki
-clone_all https://github.com/nikkinikki-org/OpenWrt-momo
-clone_dir https://github.com/QiuSimons/luci-app-daed daed luci-app-daed
-clone_all https://github.com/sirpdboy/netspeedtest
-clone_all https://github.com/sirpdboy/luci-app-poweroffdevice
-clone_all https://github.com/sirpdboy/luci-app-lucky
-clone_all https://github.com/sirpdboy/luci-app-eqosplus.git
-clone_all https://github.com/OpenListTeam/OpenList
-clone_all https://github.com/sbwml/luci-app-mosdns
-git_clone https://github.com/sbwml/packages_lang_golang golang
-clone_all https://github.com/destan19/OpenAppFilter
-# clone_all https://github.com/xuanranran/luci-app-onliner
-clone_all https://github.com/linkease/istore-ui
-clone_all https://github.com/linkease/istore luci
-clone_all https://github.com/chenmozhijin/luci-app-socat
-# clone_all https://github.com/asvow/luci-app-tailscale
-clone_all https://github.com/brvphoenix/luci-app-wrtbwmon
-clone_all https://github.com/brvphoenix/wrtbwmon
-clone_dir https://github.com/kiddin9/kwrt-packages luci-app-onliner luci-app-tailscale-community luci-app-wizard openwrt-bandix luci-app-bandix luci-theme-edge luci-app-control-weburl 
+# clone_all https://github.com/nikkinikki-org/OpenWrt-nikki
+# clone_dir https://github.com/QiuSimons/luci-app-daed daed luci-app-daed
+clone_dir https://github.com/sirpdboy/netspeedtest luci-app-netspeedtest ookla-speedtest homebox
+clone_dir https://github.com/sirpdboy/luci-app-poweroffdevice luci-app-poweroffdevice
+clone_dir https://github.com/sirpdboy/luci-app-lucky luci-app-lucky lucky
+# clone_all https://github.com/sirpdboy/luci-app-eqosplus.git
+# clone_all https://github.com/OpenListTeam/OpenList
+# clone_all https://github.com/sbwml/luci-app-mosdns
+clone_dir https://github.com/destan19/OpenAppFilter luci-app-oaf oaf open-app-filter
+git_clone https://github.com/xuanranran/luci-app-onliner luci-app-onliner
+clone_dir https://github.com/kiddin9/op-packages luci-app-trafficctl luci-app-timecontrol luci-app-dufs openwrt-bandix luci-app-bandix luci-theme-aurora luci-app-control-weburl luci-app-nikki mihomo-meta nikki clashoo mihomo luci-theme-spectra    
+# clone_all https://github.com/YusDyr/luci-app-trafficctl
+clone_dir https://github.com/kiddin9/op-packages luci-app-qosmate qosmate luci-app-eqosplus
+git_clone https://github.com/nobodyman-star/immortalwrt-console-menu immortalwrt-console-menu
+git_clone https://github.com/nobodyman-star/console-menu console-menu
+
 # 科学上网插件
 # clone_all https://github.com/fw876/helloworld
-# clone_all https://github.com/xiaorouji/openwrt-passwall-packages
-# clone_all https://github.com/xiaorouji/openwrt-passwall
-# clone_all https://github.com/xiaorouji/openwrt-passwall2
+clone_all https://github.com/Openwrt-Passwall/openwrt-passwall
+clone_dir https://github.com/Openwrt-Passwall/openwrt-passwall-packages hysteria sing-box chinadns-ng geoview
+# clone_all https://github.com/Openwrt-Passwall/openwrt-passwall2
 # clone_dir https://github.com/vernesong/OpenClash luci-app-openclash
 # clone_dir https://github.com/sbwml/openwrt_helloworld shadowsocks-rust
-
+# clone_all https://github.com/kenzok8/openwrt-daede
 # Themes
 # git_clone https://github.com/kiddin9/luci-theme-edge
 # git_clone https://github.com/jerrykuku/luci-theme-argon
@@ -270,10 +283,10 @@ clone_dir https://github.com/kiddin9/kwrt-packages luci-app-onliner luci-app-tai
 git_clone https://github.com/sirpdboy/luci-app-kucat-config
 git_clone https://github.com/sirpdboy/luci-theme-kucat
 # 晶晨宝盒
-clone_all https://github.com/ophub/luci-app-amlogic
-sed -i "s|firmware_repo.*|firmware_repo 'https://github.com/$GITHUB_REPOSITORY'|g" $destination_dir/luci-app-amlogic/root/etc/config/amlogic
+# clone_all https://github.com/ophub/luci-app-amlogic
+# sed -i "s|firmware_repo.*|firmware_repo 'https://github.com/$GITHUB_REPOSITORY'|g" $destination_dir/luci-app-amlogic/root/etc/config/amlogic
 # sed -i "s|kernel_path.*|kernel_path 'https://github.com/ophub/kernel'|g" $destination_dir/luci-app-amlogic/root/etc/config/amlogic
-sed -i "s|ARMv8|$RELEASE_TAG|g" $destination_dir/luci-app-amlogic/root/etc/config/amlogic
+# sed -i "s|ARMv8|$RELEASE_TAG|g" $destination_dir/luci-app-amlogic/root/etc/config/amlogic
 
 # 加载个人设置
 begin_time=$(date '+%H:%M:%S')
@@ -287,7 +300,17 @@ if [ $PART_SIZE ]; then
 fi
 
 # 修改luci为指定版本
-sed -i 's#^src-git\s\+luci\s\+.*coolsnowwolf.*#src-git luci https://github.com/coolsnowwolf/luci.git;openwrt-24.10#' feeds.conf.default
+# sed -i 's#^src-git\s\+luci\s\+.*coolsnowwolf.*#src-git luci https://github.com/coolsnowwolf/luci.git;openwrt-25.12#' feeds.conf.default
+
+# 修改首页固件显示信息
+ 
+ BUILD_TIME=$(date +"%Y-%m-%d")
+ RELEASE_FILE="package/base-files/files/etc/openwrt_release"
+ sed -i "s#^DISTRIB_DESCRIPTION=.*#DISTRIB_DESCRIPTION='ImmortalWrt25.12 built by T on ${BUILD_TIME}'#" "${RELEASE_FILE}"
+ JSFILE="feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js"
+ 
+ sed -i "s#(L.isObject(boardinfo.release) ? boardinfo.release.description + ' / ' : '') + (luciversion || '')#(L.isObject(boardinfo.release) ? boardinfo.release.description + ' / ' : '') + (luciversion || '') + ' | Built on ${BUILD_TIME} by T'#" "${JSFILE}"
+
 
 # 修改默认IP
 [ $DEFAULT_IP ] && sed -i '/n) ipad/s/".*"/"'"$DEFAULT_IP"'"/' package/base-files/files/bin/config_generate
