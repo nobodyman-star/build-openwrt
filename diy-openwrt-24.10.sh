@@ -270,7 +270,7 @@ git_clone https://github.com/nobodyman-star/console-menu console-menu
 # 科学上网插件
 # clone_all https://github.com/fw876/helloworld
 clone_all https://github.com/Openwrt-Passwall/openwrt-passwall
-clone_dir https://github.com/Openwrt-Passwall/openwrt-passwall-packages hysteria sing-box chinadns-ng geoview
+# clone_dir https://github.com/Openwrt-Passwall/openwrt-passwall-packages hysteria sing-box chinadns-ng geoview
 # clone_all https://github.com/Openwrt-Passwall/openwrt-passwall2
 # clone_dir https://github.com/vernesong/OpenClash luci-app-openclash
 # clone_dir https://github.com/sbwml/openwrt_helloworld shadowsocks-rust
