@@ -241,6 +241,11 @@ begin_time=$(date '+%H:%M:%S')
 ./scripts/feeds install -a 1>/dev/null 2>&1
 status "更新&安装插件"
 
+# 剔除部分默认选择插件
+sed -i '/CONFIG_PACKAGE_luci-app-upnp/d' .config
+sed -i '/CONFIG_PACKAGE_miniupnpd/d' .config
+
+
 # 创建插件保存目录
 destination_dir="package/A"
 [ -d $destination_dir ] || mkdir -p $destination_dir
