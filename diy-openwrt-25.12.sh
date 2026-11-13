@@ -248,7 +248,7 @@ destination_dir="package/A"
 color cy "添加&替换插件"
 
 # 添加额外插件
-clone_dir https://github.com/immortalwrt/packages rust
+clone_dir https://github.com/immortalwrt/packages rust python
 # git_clone https://github.com/sirpdboy/luci-app-adguardhome
 git_clone https://github.com/nobodyman-star/luci-app-adguardhome
 git_clone https://github.com/immortalwrt/homeproxy luci-app-homeproxy
