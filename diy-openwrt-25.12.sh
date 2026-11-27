@@ -312,6 +312,73 @@ fi
  sed -i "s#(L.isObject(boardinfo.release) ? boardinfo.release.description + ' / ' : '') + (luciversion || '')#(L.isObject(boardinfo.release) ? boardinfo.release.description + ' / ' : '') + (luciversion || '') + ' | Built on ${BUILD_TIME} by T'#" "${JSFILE}"
 
 
+
+echo "======================================"
+echo "       iStore 强制简体中文补丁"
+echo "======================================"
+
+# 自动查找 iStore 的 store.lua
+FILE=$(find package feeds -type f \
+    -path "*/luci-app-store/luasrc/controller/store.lua" \
+    2>/dev/null | head -n 1)
+
+if [ -z "$FILE" ]; then
+    echo "错误：未找到 iStore store.lua"
+    exit 1
+fi
+
+echo "找到文件：$FILE"
+
+# 检查是否存在 vue_lang 函数
+if ! grep -q 'local function vue_lang()' "$FILE"; then
+    echo "错误：未找到 vue_lang() 函数，未修改文件"
+    exit 1
+fi
+
+# 备份原文件
+cp "$FILE" "$FILE.bak"
+
+# 使用 Python 修改语言识别函数
+python3 - "$FILE" <<'PY'
+import re
+import sys
+
+path = sys.argv[1]
+
+with open(path, "r", encoding="utf-8") as f:
+    content = f.read()
+
+pattern = r'local function vue_lang\(\).*?\nend'
+
+replacement = '''local function vue_lang()
+    return "zh-cn"
+end'''
+
+new_content, count = re.subn(
+    pattern,
+    replacement,
+    content,
+    count=1,
+    flags=re.S
+)
+
+if count != 1:
+    print("错误：函数匹配失败，原文件未修改")
+    sys.exit(1)
+
+with open(path, "w", encoding="utf-8") as f:
+    f.write(new_content)
+
+print("成功：iStore 已设置为简体中文")
+PY
+
+echo "======================================"
+echo "iStore 中文补丁执行完成"
+echo "备份文件：$FILE.bak"
+echo "======================================"
+
+
+
 # 修改默认IP
 [ $DEFAULT_IP ] && sed -i '/n) ipad/s/".*"/"'"$DEFAULT_IP"'"/' package/base-files/files/bin/config_generate
 
