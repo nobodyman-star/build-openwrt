@@ -263,11 +263,12 @@ clone_dir https://github.com/sirpdboy/luci-app-lucky luci-app-lucky lucky
 # clone_all https://github.com/sbwml/luci-app-mosdns
 clone_dir https://github.com/destan19/OpenAppFilter luci-app-oaf oaf open-app-filter
 git_clone https://github.com/xuanranran/luci-app-onliner luci-app-onliner
-clone_dir https://github.com/kiddin9/op-packages luci-app-timecontrol luci-app-dufs openwrt-bandix luci-app-bandix luci-theme-aurora luci-app-control-weburl luci-app-nikki mihomo-meta nikki clashoo mihomo luci-theme-spectra    
+clone_dir https://github.com/kiddin9/op-packages luci-app-timecontrol luci-app-dufs luci-app-bandix luci-theme-aurora luci-app-control-weburl luci-app-nikki mihomo-meta nikki clashoo mihomo luci-theme-spectra    
 # clone_all https://github.com/YusDyr/luci-app-trafficctl
 clone_dir https://github.com/kiddin9/op-packages luci-app-qosmate qosmate luci-app-eqosplus
 git_clone https://github.com/nobodyman-star/console-menu console-menu
 git_clone https://github.com/istoreos/istore istore
+git_clone https://github.com/timsaya/openwrt-bandix openwrt-bandix
 # 科学上网插件
 # clone_all https://github.com/fw876/helloworld
 clone_all https://github.com/Openwrt-Passwall/openwrt-passwall
